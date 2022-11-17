@@ -81,30 +81,25 @@ void get_guessed_word(const char secret[], const char letters_guessed[], char gu
 
     for (int i = 0; i < secL; i++)
     {
-        for (int j = 0; j <= letL; j++)
+        for (int j = 0; j < letL; j++)
         {
-            if(j == letL){
-                guessed_word[j] = '\0';
-            }
-
-            else if (letters_guessed[j] == secret[i])
+            if (letters_guessed[j] == secret[i])
             {
                 guessed_word[i] = secret[i];
             }
         }
     }
 
-    for (int i = 0; i <= secL; i++)
+    for (int i = 0; i < secL; i++)
     {
-        if(i == secL){
-            guessed_word[i] = '\0';
-        }
-
-        else if (secret[i] != guessed_word[i])
+        if (secret[i] != guessed_word[i])
         {
             guessed_word[i] = '_';
         }
     }
+
+    int gL = strlen(guessed_word);
+    guessed_word[gL] = '\0';
 
     for (int i = 0; i < secL; i++)
     {
@@ -145,6 +140,8 @@ void get_available_letters(const char letters_guessed[], char available_letters[
         }
     }
 
+    abeceda[aL] = '\0';
+
     for (int i = 0; i < aL; i++)
     {
         printf("%c", abeceda[i]);
@@ -155,7 +152,7 @@ void get_available_letters(const char letters_guessed[], char available_letters[
 void hangman(const char secret[]) {
     int dlzka = strlen(secret);
 
-    char letters_guessed[30] = "";
+    char letters_guessed[30];
     char abeceda[] = {"abcdefghijklmnopqrstuvwxyz"};
     int dlzkaA = strlen(abeceda);
     int pokusy = 8;
