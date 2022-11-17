@@ -100,7 +100,7 @@ void get_guessed_word(const char secret[], const char letters_guessed[], char gu
 
     for (int i = 0; i < secL; i++)
     {
-        printf("%c", guessed_word[i]);
+        printf(" %c", guessed_word[i]);
     }
 
     printf("\n");
