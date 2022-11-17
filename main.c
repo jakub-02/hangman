@@ -17,7 +17,7 @@ int main(){
     //hra
     char secret[] = "";
     get_word(secret);
-    hangman(secret);
+    hangman("lopta");
 
     return 0;
 }

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <string.h>
+#include <ctype.h>
 #include "hangman.h"
 
 int get_word(char secret[])
@@ -170,10 +171,9 @@ void hangman(const char secret[])
 
         for (int g = 0; g < strlen(abeceda); g++)
         {
-            if (tip[0] == abeceda[g])
+            if (tolower(tip[0]) == abeceda[g])
             {
                 sranda = 1;
-                break;
             }
         }
 
@@ -210,7 +210,7 @@ void hangman(const char secret[])
 
         else if (sranda == 0)
         {
-            printf("Oops! '@' is not a valid letter: ");
+            printf("Oops! '%c' is not a valid letter: ", tip[0]);
             get_guessed_word(secret, letters_guessed, result);
         }
 
