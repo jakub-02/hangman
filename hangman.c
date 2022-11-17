@@ -3,6 +3,7 @@
 #include <sys/stat.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdbool.h>
 #include "hangman.h"
 
 int get_word(char secret[])
@@ -149,9 +150,10 @@ void hangman(const char secret[])
 
     char letters_guessed[30] = "";
     char abeceda[] = {"abcdefghijklmnopqrstuvwxyz"};
+    int dlzkaA = strlen(abeceda);
     int pokusy = 8;
     int i = 0;
-    char tip[1];
+    char tip[30];
     char result[30];
 
     printf("Welcome to the game, Hangman!\n");
@@ -165,21 +167,24 @@ void hangman(const char secret[])
         get_available_letters(letters_guessed, abeceda);
         printf("Please guess a letter: ");
         scanf("%s", tip);
-        letters_guessed[i] = tip[0];
-        int sranda = 0;
-        i++;
 
-        for (int g = 0; g < strlen(abeceda); g++)
+        bool kontrola = false;
+
+        for (int g = 0; g < dlzkaA; g++)
         {
             if (tolower(tip[0]) == abeceda[g])
             {
-                sranda = 1;
+                kontrola = true;
+                break;
             }
         }
 
-        if (sranda == 1)
+        letters_guessed[i] = tolower(tip[0]);
+        i++;
+
+        if (kontrola == true)
         {
-            int checker = 0;
+            bool checker = false;
 
             for (int j = 0; j < dlzka; j++)
             {
@@ -187,12 +192,12 @@ void hangman(const char secret[])
                 {
                     printf("Good guess:");
                     get_guessed_word(secret, letters_guessed, result);
-                    checker = 1;
+                    checker = true;
                     break;
                 }
             }
 
-            if (checker != 1)
+            if (checker != true)
             {
 
                 for (int j = 0; j < dlzka; j++)
@@ -208,9 +213,9 @@ void hangman(const char secret[])
             }
         }
 
-        else if (sranda == 0)
+        else
         {
-            printf("Oops! '%c' is not a valid letter: ", tip[0]);
+            printf("Oops! '%c' is not a valid letter:", tip[0]);
             get_guessed_word(secret, letters_guessed, result);
         }
 
