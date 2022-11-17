@@ -214,8 +214,6 @@ void hangman(const char secret[]) {
 
     } while (pokusy > 0 && is_word_guessed(secret, letters_guessed) == 0);
 
-    printf("-------------\n");
-
     if (celeSlovo) {
     if (is_word_guessed(secret, tip) == 1) {
         printf("Congratulations, you won!\n");
@@ -225,6 +223,7 @@ void hangman(const char secret[]) {
     }
 
     else{
+        printf("-------------\n");
     if (is_word_guessed(secret, letters_guessed) == 1){
         printf("Congratulations, you won!\n");
     }

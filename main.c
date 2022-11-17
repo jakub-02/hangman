@@ -9,10 +9,10 @@ int main(){
     //test
     printf("%d\n", is_word_guessed("robota", "bator"));
     char result[30];
-    get_guessed_word("frizzier", "abcdefghijklmnopqrstuvwxyz", result);
+    get_guessed_word("perversely", "", result);
     get_available_letters("", result);
 
-    printf("\n");
+    printf("koniec testov, podme hrat\n");
 
     //hra
     char secret[] = "";
