@@ -144,8 +144,7 @@ void get_available_letters(const char letters_guessed[], char available_letters[
     printf("\n");
 }
 
-void hangman(const char secret[])
-{
+void hangman(const char secret[]) {
     int dlzka = strlen(secret);
 
     char letters_guessed[30] = "";
@@ -155,12 +154,12 @@ void hangman(const char secret[])
     int i = 0;
     char tip[30];
     char result[30];
+    bool celeSlovo = false;
 
     printf("Welcome to the game, Hangman!\n");
     printf("I am thinking of a word that is %d letters long.\n", dlzka);
 
-    do
-    {
+    do {
         printf("-------------\n");
         printf("You have %d guesses left.\n", pokusy);
         printf("Available letters: ");
@@ -170,10 +169,13 @@ void hangman(const char secret[])
 
         bool kontrola = false;
 
-        for (int g = 0; g < dlzkaA; g++)
-        {
-            if (tolower(tip[0]) == abeceda[g])
-            {
+        if (strlen(tip) > 1) {
+            celeSlovo = true;
+            break;
+        }
+
+        for (int g = 0; g < dlzkaA; g++) {
+            if (tolower(tip[0]) == abeceda[g]) {
                 kontrola = true;
                 break;
             }
@@ -182,14 +184,11 @@ void hangman(const char secret[])
         letters_guessed[i] = tolower(tip[0]);
         i++;
 
-        if (kontrola == true)
-        {
+        if (kontrola == true) {
             bool checker = false;
 
-            for (int j = 0; j < dlzka; j++)
-            {
-                if (letters_guessed[i - 1] == secret[j])
-                {
+            for (int j = 0; j < dlzka; j++) {
+                if (letters_guessed[i - 1] == secret[j]) {
                     printf("Good guess:");
                     get_guessed_word(secret, letters_guessed, result);
                     checker = true;
@@ -197,13 +196,10 @@ void hangman(const char secret[])
                 }
             }
 
-            if (checker != true)
-            {
+            if (checker != true) {
 
-                for (int j = 0; j < dlzka; j++)
-                {
-                    if (letters_guessed[i - 1] != secret[j])
-                    {
+                for (int j = 0; j < dlzka; j++) {
+                    if (letters_guessed[i - 1] != secret[j]) {
                         printf("Oops! That letter is not in my word:");
                         get_guessed_word(secret, letters_guessed, result);
                         pokusy--;
@@ -211,10 +207,7 @@ void hangman(const char secret[])
                     }
                 }
             }
-        }
-
-        else
-        {
+        } else {
             printf("Oops! '%c' is not a valid letter:", tip[0]);
             get_guessed_word(secret, letters_guessed, result);
         }
@@ -223,12 +216,20 @@ void hangman(const char secret[])
 
     printf("-------------\n");
 
-    if (is_word_guessed(secret, letters_guessed) == 1)
-    {
+    if (celeSlovo) {
+    if (is_word_guessed(secret, tip) == 1) {
+        printf("Congratulations, you won!\n");
+    } else if (is_word_guessed(secret, letters_guessed) == 0) {
+        printf("Sorry, bad guess. The word was %s.\n", secret);
+    }
+    }
+
+    else{
+    if (is_word_guessed(secret, letters_guessed) == 1){
         printf("Congratulations, you won!\n");
     }
-    else if (is_word_guessed(secret, letters_guessed) == 0)
-    {
+    else if (is_word_guessed(secret, letters_guessed) == 0){
         printf("Sorry, you ran out of guesses. The word was %s.\n", secret);
+    }
     }
 }
