@@ -81,18 +81,26 @@ void get_guessed_word(const char secret[], const char letters_guessed[], char gu
 
     for (int i = 0; i < secL; i++)
     {
-        for (int j = 0; j < letL; j++)
+        for (int j = 0; j <= letL; j++)
         {
-            if (letters_guessed[j] == secret[i])
+            if(j == letL){
+                guessed_word[j] = '\0';
+            }
+
+            else if (letters_guessed[j] == secret[i])
             {
                 guessed_word[i] = secret[i];
             }
         }
     }
 
-    for (int i = 0; i < secL; i++)
+    for (int i = 0; i <= secL; i++)
     {
-        if (secret[i] != guessed_word[i])
+        if(i == secL){
+            guessed_word[i] = '\0';
+        }
+
+        else if (secret[i] != guessed_word[i])
         {
             guessed_word[i] = '_';
         }
