@@ -90,16 +90,14 @@ void get_guessed_word(const char secret[], const char letters_guessed[], char gu
         }
     }
 
-    for (int i = 0; i < secL; i++)
+    for (int i = 0; i <= secL; i++)
     {
         if (secret[i] != guessed_word[i])
         {
             guessed_word[i] = '_';
         }
     }
-
-    int gL = strlen(guessed_word);
-    guessed_word[gL] = '\0';
+    guessed_word[secL] = '\0';
 
     for (int i = 0; i < secL; i++)
     {
@@ -140,12 +138,15 @@ void get_available_letters(const char letters_guessed[], char available_letters[
         }
     }
 
-    abeceda[aL] = '\0';
-
-    for (int i = 0; i < aL; i++)
+    for (int i = 0; i <= aL; i++)
     {
-        printf("%c", abeceda[i]);
+        available_letters[i] = abeceda[i];
     }
+
+    available_letters[aL] = '\0';
+
+    printf("%s", available_letters);
+
     printf("\n");
 }
 

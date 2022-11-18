@@ -9,7 +9,7 @@ int main(){
     //test
     printf("%d\n", is_word_guessed("robota", "bator"));
     char result[30];
-    get_guessed_word("financier", "acefinr", result);
+    get_guessed_word("inspirited", "", result);
     get_available_letters("", result);
 
     printf("koniec testov, podme hrat\n");
@@ -17,7 +17,7 @@ int main(){
     //hra
     char secret[] = "";
     get_word(secret);
-    hangman("fleshes");
+    hangman("anakonda");
 
     return 0;
 }
